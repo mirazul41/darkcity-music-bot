@@ -15,7 +15,6 @@ const {
     SlashCommandBuilder
 } = require('discord.js');
 const { Player } = require('discord-player');
-const { DefaultExtractors } = require('@discord-player/extractor');
 
 // Express App Setup for Render (Keep Alive)
 const app = express();
@@ -160,7 +159,9 @@ client.on('interactionCreate', async (interaction) => {
                 queue.delete();
             }
 
+            // searchEngine explicitly 'youtubeSearch' kora holo
             const result = await player.play(voiceChannel, query, {
+                searchEngine: 'youtubeSearch',
                 nodeOptions: {
                     metadata: interaction.channel,
                     leaveOnEmpty: true,
@@ -186,7 +187,7 @@ client.on('interactionCreate', async (interaction) => {
 
         } catch (error) {
             console.error('Play error:', error);
-            return interaction.editReply({ content: '❌ গানটি চালানো সম্ভব হয়নি!' });
+            return interaction.editReply({ content: '❌ গানটি চালানো সম্ভব হয়নি! অনুগ্রহ করে আবার চেষ্টা করুন।' });
         }
     }
 
