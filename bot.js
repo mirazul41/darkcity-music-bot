@@ -45,7 +45,7 @@ const player = new Player(client);
 // Extractor Load & Register Slash Command
 client.once('clientReady', async () => {
     try {
-        await player.extractors.loadMulti(DefaultExtractors);
+        await player.extractors.loadDefault();
         console.log(`✅ Bot successfully logged in as: ${client.user.tag}`);
 
         // Slash command /join register kora
